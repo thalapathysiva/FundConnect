@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="dashboard-hero">
+        <div class="container">
+            <h1>Welcome, {{ username }}!</h1>
+            <p>Manage your profile and connect with potential partners.</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <i class="fas fa-users fa-3x mb-3 text-primary"></i>
+                        <h3 class="card-title">Browse Profiles</h3>
+                        <p class="card-text">View potential matches based on your profile and preferences.</p>
+                        <div class="d-grid mt-3">
+                            <a href="/profiles" class="btn btn-primary">
+                                <i class="fas fa-search me-2"></i>View Profiles
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <i class="fas fa-user-edit fa-3x mb-3 text-primary"></i>
+                        <h3 class="card-title">Edit Profile</h3>
+                        <p class="card-text">Update your profile information to improve matching results.</p>
+                        <div class="d-grid mt-3">
+                            <a href="#" class="btn btn-primary">
+                                <i class="fas fa-edit me-2"></i>Edit Profile
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <i class="fas fa-comments fa-3x mb-3 text-primary"></i>
+                        <h3 class="card-title">Messages</h3>
+                        <p class="card-text">Check and respond to messages from potential partners.</p>
+                        <div class="d-grid mt-3">
+                            <a href="#" class="btn btn-primary">
+                                <i class="fas fa-envelope me-2"></i>View Messages
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row mt-4">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h4 class="mb-0">Recent Activity</h4>
+                        <a href="#" class="btn btn-sm btn-outline-primary">View All</a>
+                    </div>
+                    <div class="card-body">
+                        <div class="list-group list-group-flush">
+                            <div class="list-group-item d-flex justify-content-between align-items-center py-3">
+                                <div>
+                                    <i class="fas fa-bell text-primary me-2"></i>
+                                    <span>Welcome to FundConnect! Complete your profile to get started.</span>
+                                </div>
+                                <span class="text-muted small">Just now</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="mb-0">Account Information</h4>
+                    </div>
+                    <div class="card-body">
+                        <p class="mb-2"><strong>Username:</strong> {{ username }}</p>
+                        <p class="mb-2"><strong>Account Type:</strong> 
+                            <span class="badge bg-primary">Free</span>
+                        </p>
+                        <p class="mb-2"><strong>Join Date:</strong> March 9, 2025</p>
+                        <div class="d-grid mt-3">
+                            <a href="/logout" class="btn btn-outline-danger">
+                                <i class="fas fa-sign-out-alt me-2"></i>Logout
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

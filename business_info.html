@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="mb-0">Complete Your Business Profile</h2>
+                    </div>
+                    <div class="card-body">
+                        <p class="text-muted mb-4">This information will help us match you with suitable investors.</p>
+                        
+                        <form action="/business_info" method="POST">
+                            <div class="mb-4">
+                                <label for="short_description" class="form-label">Business Description</label>
+                                <textarea class="form-control" id="short_description" name="short_description" 
+                                          rows="3" placeholder="Tell investors about your business" required></textarea>
+                            </div>
+                            
+                            <div class="row mb-3">
+                                <div class="col-md-6 mb-3 mb-md-0">
+                                    <label for="amount_requested" class="form-label">Amount Requested ($)</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
+                                        <input type="number" class="form-control" id="amount_requested" 
+                                               name="amount_requested" placeholder="50000" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="repayment_term" class="form-label">Repayment Term (months)</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                                        <input type="number" class="form-control" id="repayment_term" 
+                                               name="repayment_term" placeholder="24" required>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="purpose_of_money" class="form-label">Purpose of Funding</label>
+                                <textarea class="form-control" id="purpose_of_money" name="purpose_of_money" 
+                                          rows="2" placeholder="Explain how you'll use the funds" required></textarea>
+                            </div>
+                            
+                            <div class="row mb-3">
+                                <div class="col-md-4 mb-3 mb-md-0">
+                                    <label for="interest_rate" class="form-label">Interest Rate (%)</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fas fa-percentage"></i></span>
+                                        <input type="number" step="0.1" class="form-control" id="interest_rate" 
+                                               name="interest_rate" placeholder="5.5" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3 mb-md-0">
+                                    <label for="annual_revenue" class="form-label">Annual Revenue ($)</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fas fa-chart-line"></i></span>
+                                        <input type="number" class="form-control" id="annual_revenue" 
+                                               name="annual_revenue" placeholder="250000" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="net_profit_margin" class="form-label">Net Profit Margin (%)</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fas fa-chart-pie"></i></span>
+                                        <input type="number" step="0.1" class="form-control" id="net_profit_margin" 
+                                               name="net_profit_margin" placeholder="15.0" required>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="d-grid mt-4">
+                                <button type="submit" class="btn btn-primary">Complete Profile</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

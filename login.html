@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container py-5">
+        <div class="auth-container">
+            <div class="auth-header">
+                <i class="fas fa-sign-in-alt fa-3x text-primary mb-3"></i>
+                <h1>Welcome Back</h1>
+            </div>
+            
+            <form action="/login" method="POST">
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username" required>
+                    </div>
+                </div>
+                
+                <div class="mb-4">
+                    <label for="password" class="form-label">Password</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
+                    </div>
+                </div>
+                
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary">Sign In</button>
+                </div>
+            </form>
+            
+            <div class="auth-footer">
+                <p>Don't have an account? <a href="/register">Register now</a></p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

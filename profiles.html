@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+<!-->
+
+
+{% block content %}
+    <div class="container py-5">
+        <div class="row justify-content-center mb-4">
+            <div class="col-lg-8 text-center">
+                <h2 class="mb-3">{{ profile_type }}</h2>
+                <p class="text-muted">Find your ideal business or investment match.</p>
+            </div>
+        </div>
+        
+        {% if profiles %}
+            <div class="row">
+                {% for profile in profiles %}
+                    <div class="col-md-6 mb-4">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                {% if profile['user_type'] == 'business_owner' %}
+                                    <!-- Business Owner Profile -->
+                                    <h3 class="card-title">{{ profile['business_info']['business_name'] }}</h3>
+                                    <div class="mb-3 pb-3 border-bottom">
+                                        <span class="badge bg-primary me-2">{{ profile['business_info']['industry'] }}</span>
+                                        <span class="badge bg-secondary">{{ profile['business_info']['years_in_operation'] }} years</span>
+                                    </div>
+                                    
+                                    <p class="card-text mb-3"><strong>Description:</strong> {{ profile['business_info']['short_description'] }}</p>
+                                    
+                                    <div class="row g-3 mb-3">
+                                        <div class="col-6">
+                                            <p class="mb-1"><i class="fas fa-dollar-sign me-2 text-primary"></i><strong>Amount:</strong></p>
+                                            <p class="text-muted">${{ "{:,.0f}".format(profile['business_info']['amount_requested']|float) }}</p>
+                                        </div>
+                                        <div class="col-6">
+                                            <p class="mb-1"><i class="fas fa-calendar me-2 text-primary"></i><strong>Term:</strong></p>
+                                            <p class="text-muted">{{ profile['business_info']['repayment_term'] }} months</p>
+                                        </div>
+                                        <div class="col-6">
+                                            <p class="mb-1"><i class="fas fa-percentage me-2 text-primary"></i><strong>Interest:</strong></p>
+                                            <p class="text-muted">{{ profile['business_info']['interest_rate'] }}%</p>
+                                        </div>
+                                        <div class="col-6">
+                                            <p class="mb-1"><i class="fas fa-chart-line me-2 text-primary"></i><strong>Revenue:</strong></p>
+                                            <p class="text-muted">${{ "{:,.0f}".format(profile['business_info']['annual_revenue']|float) }}</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <p class="card-text mb-3"><strong>Purpose:</strong> {{ profile['business_info']['purpose_of_money'] }}</p>
+                                    
+                                {% elif profile['user_type'] == 'investor' %}
+                                    <!-- Investor Profile -->
+                                    <h3 class="card-title">{{ profile['investor_info']['investor_name'] }}</h3>
+                                    <div class="mb-3 pb-3 border-bottom">
+                                        <span class="badge bg-primary me-2">Investor</span>
+                                        <span class="badge bg-info">{{ profile['investor_info']['risk_tolerance'] }} Risk</span>
+                                    </div>
+                                    
+                                    <div class="row g-3 mb-3">
+                                        <div class="col-12">
+                                            <p class="mb-1"><i class="fas fa-industry me-2 text-primary"></i><strong>Industries:</strong></p>
+                                            <p class="text-muted">{{ profile['investor_info']['preferred_industries'] }}</p>
+                                        </div>
+                                        <div class="col-12">
+                                            <p class="mb-1"><i class="fas fa-dollar-sign me-2 text-primary"></i><strong>Investment Range:</strong></p>
+                                            <p class="text-muted">{{ profile['investor_info']['typical_investment_range'] }}</p>
+                                        </div>
+                                        <div class="col-6">
+                                            <p class="mb-1"><i class="fas fa-file-contract me-2 text-primary"></i><strong>Preferred Terms:</strong></p>
+                                            <p class="text-muted">{{ profile['investor_info']['preferred_loan_terms'] }}</p>
+                                        </div>
+                                        <div class="col-6">
+                                            <p class="mb-1"><i class="fas fa-handshake me-2 text-primary"></i><strong>Funded:</strong></p>
+                                            <p class="text-muted">{{ profile['investor_info']['number_of_funded_businesses'] }} businesses</p>
+                                        </div>
+                                    </div>
+                                {% endif %}
+
+                                <!-- Display Match Score -->
+                                {% if 'match_score' in profile %}
+                                    <div class="mt-3 pt-3 border-top d-flex justify-content-between align-items-center">
+                                        <h4 class="mb-0">Match Score:</h4>
+                                        <div class="text-end">
+                                            <span class="fw-bold fs-4 
+                                                {% if profile['match_score'] > 0.7 %}text-success
+                                                {% elif profile['match_score'] > 0.4 %}text-warning
+                                                {% else %}text-danger{% endif %}">
+                                                {{ "%.1f"|format(profile['match_score'] * 100) }}%
+                                            </span>
+                                        </div>
+                                    </div>
+                                {% endif %}
+
+                                <!-- Display Phone Number -->
+                                <div class="mt-4 pt-3 border-top">
+                                    <p class="mb-0"><i class="fas fa-phone me-2 text-primary"></i><strong>Phone:</strong> {{ profile['phone'] }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="card text-center p-5">
+                <div class="card-body">
+                    <i class="fas fa-search fa-3x text-muted mb-3"></i>
+                    <h3>No profiles found</h3>
+                    <p class="text-muted">We couldn't find any matching profiles at this time.</p>
+                </div>
+            </div>
+        {% endif %}
+        
+        <div class="text-center mt-4">
+            <a href="/" class="btn btn-secondary">
+                <i class="fas fa-arrow-left me-2"></i>Back to Dashboard
+            </a>
+        </div>
+    </div>
+{% endblock %}
